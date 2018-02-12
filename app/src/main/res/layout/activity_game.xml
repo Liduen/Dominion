@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="android.dominion.ui.activity.GameActivity">
+
+    <data class="GameBinding">
+
+        <variable
+            name="viewModel"
+            type="android.dominion.ui.viewModel.GameViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:columnCount="4"
+            app:rowCount="3">
+
+            <Spinner
+                android:id="@+id/s_supply_selector"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:entries='@{viewModel.boardCardTypes}'
+                app:layout_column="0"
+                app:layout_gravity="fill"
+                app:layout_row="0" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lv_supply_cards"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_column="1"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                app:layout_row="0"
+                app:layout_rowWeight="1"
+                tools:listitem="@layout/list_item_card" />
+
+            <TextView
+                android:id="@+id/tv_logs"
+                android:layout_width="150dp"
+                android:text='@{viewModel.actionsLog}'
+                app:layout_column="3"
+                app:layout_gravity="fill_vertical"
+                app:layout_row="0"
+                app:layout_rowSpan="3" />
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_column="0"
+                app:layout_gravity="fill"
+                app:layout_row="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="coin sum:" />
+
+                <TextView
+                    android:id="@+id/tv_coins_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="actions left:" />
+
+                <TextView
+                    android:id="@+id/tv_actions_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="3" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lv_cards_in_play"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_column="1"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill_horizontal"
+                app:layout_row="1"
+                app:layout_rowWeight="1"
+                tools:listitem="@layout/list_item_card" />
+
+            <ImageView
+                android:id="@+id/iv_deck"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                app:layout_column="0"
+                app:layout_row="2"
+                app:layout_rowWeight="1"
+                tools:src="@drawable/i_card_back" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lv_cards_in_hand"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                app:layout_column="1"
+                app:layout_gravity="fill_horizontal"
+                app:layout_row="2"
+                app:layout_rowWeight="1"
+                tools:listitem="@layout/list_item_card" />
+
+            <ImageView
+                android:id="@+id/iv_discard"
+                android:layout_width="@dimen/card_width"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                app:layout_column="2"
+                app:layout_row="2"
+                app:layout_rowWeight="1"
+                tools:src="@drawable/i_card_silver" />
+
+        </android.support.v7.widget.GridLayout>
+
+    </RelativeLayout>
+
+</layout>

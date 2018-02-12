@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Dominion</string>
+    <string name="title_activity_hosting">HostingActivity</string>
+    <string name="player">Player</string>
+    <string name="aggressive_player">Aggressive Player</string>
+    <string name="greedy_player">Greedy Player</string>
+    <string name="add_player">Add Player</string>
+
+    <string-array name="menuitems">
+        <item>Menu Item 0</item>
+        <item>Menu Item 1</item>
+        <item>Menu Item 2</item>
+    </string-array>
+</resources>

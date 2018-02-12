@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="android.dominion.ui.activity.HostingActivity">
+
+    <data class="HostingBinding">
+
+        <variable
+            name="viewModel"
+            type="android.dominion.ui.viewModel.HostingViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/action_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize" />
+
+        <ListView
+            android:id="@+id/lv_playerListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:choiceMode="singleChoice"
+            app:adapter='@{viewModel.listAdapter}'
+            tools:listfooter="@layout/list_item_add_player_footer"
+            tools:listitem="@layout/list_item_add_player" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick='@{() -> viewModel.startGame()}'
+            android:text="Start Game" />
+
+    </LinearLayout>
+
+</layout>
