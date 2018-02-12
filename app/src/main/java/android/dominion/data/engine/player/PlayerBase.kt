@@ -174,6 +174,8 @@ abstract class PlayerBase : DominionGameEngine.EngineNotificationListener {
         gameEngine.notifyPlayerAction(this, PlayerAction.TRASH, listOf(card))
     }
 
+
+
     fun discardCard(card: BaseCard) {
         discardPile.add(card)
         gameEngine.notifyPlayerAction(this, PlayerAction.DISCARD, listOf(card))
