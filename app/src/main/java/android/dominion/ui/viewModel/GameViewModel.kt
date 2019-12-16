@@ -42,11 +42,11 @@ class GameViewModel : BaseViewModel() {
     fun onGameStarted(board: Board) {
         currentBoard = board
         boardCardTypes.addAll(listOf(BoardCardPileType.Treasure.name, BoardCardPileType.Victory.name))
-        boardCardTypes.addAll(board.kingdomCards.map { it.key.price }.distinct().map { it.toString() })
+//        boardCardTypes.addAll(board.kingdomCards.map { it.key.price }.distinct().map { it.toString() })
 
-        if (board.kingdomCards.map { it.key }.any { it is Curser }) {
-            boardCardTypes.add(BoardCardPileType.Unavailable.name)
-        }
+//        if (board.kingdomCards.map { it.key }.any { it is Curser }) {
+//            boardCardTypes.add(BoardCardPileType.Unavailable.name)
+//        }
 
         logAction("GAME STARTED")
     }
@@ -77,13 +77,13 @@ class GameViewModel : BaseViewModel() {
     }
 
     fun displayCardPile(index: Int) {
-        val displayedCards = when (boardCardTypes[index]) {
-            BoardCardPileType.Victory.name -> currentBoard.victoryCards
-            BoardCardPileType.Treasure.name -> currentBoard.treasureCards
-            BoardCardPileType.Unavailable.name -> currentBoard.unavailableCards
-            else -> currentBoard.kingdomCards.filter { it.key.price == boardCardTypes[index].toInt() }
-        }
-
-        supplyPilesAdapter.set(CardListRecyclerAdapter(displayedCards.toList().toMutableList(), { x -> }, true))
+//        val displayedCards = when (boardCardTypes[index]) {
+//            BoardCardPileType.Victory.name -> currentBoard.victoryCards
+//            BoardCardPileType.Treasure.name -> currentBoard.treasureCards
+//            BoardCardPileType.Unavailable.name -> currentBoard.unavailableCards
+//            else -> currentBoard.kingdomCards.filter { it.key.price == boardCardTypes[index].toInt() }
+//        }
+//
+//        supplyPilesAdapter.set(CardListRecyclerAdapter(displayedCards.toList().toMutableList(), { x -> }, true))
     }
 }

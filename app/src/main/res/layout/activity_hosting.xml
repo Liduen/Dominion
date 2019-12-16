@@ -21,13 +21,13 @@
             android:id="@+id/action_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:actionBarSize" />
-
+<!--        app:adapter='@{viewModel.listAdapter}'-->
         <ListView
             android:id="@+id/lv_playerListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:choiceMode="singleChoice"
-            app:adapter='@{viewModel.listAdapter}'
+
             tools:listfooter="@layout/list_item_add_player_footer"
             tools:listitem="@layout/list_item_add_player" />
 

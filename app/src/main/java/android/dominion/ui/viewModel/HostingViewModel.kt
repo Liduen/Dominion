@@ -19,14 +19,14 @@ import javax.inject.Inject
  * Created by michaelkrakauer on 17/11/2017.
  */
 class HostingViewModel(private val navigator: Navigator) : BaseViewModel() {
-    @Inject
+//    @Inject
     lateinit var gameEngine: DominionGameEngine
     val players = ObservableField<MutableList<PlayerType>>(mutableListOf())
-    val listAdapter = ObservableField(PlayerListAdapter(players.get(), this::addPlayer, this::updateList))
+//    val listAdapter = ObservableField(PlayerListAdapter(players.get(), this::addPlayer, this::updateList))
 
     private fun updateList(position: Int, playerType: PlayerType) {
-        players.get()[position] = playerType
-        listAdapter.get().updateList(players.get())
+//        players.get()[position] = playerType
+//        listAdapter.get().updateList(players.get())
     }
 
     override fun attachView(context: Context, bundle: Bundle?) {
@@ -36,21 +36,21 @@ class HostingViewModel(private val navigator: Navigator) : BaseViewModel() {
     }
 
     private fun addPlayer() {
-        if (players.get().count() < 4) {
-            players.get().add(PlayerType.values().first())
-            listAdapter.get().updateList(players.get())
-        }
+//        if (players.get().count() < 4) {
+//            players.get().add(PlayerType.values().first())
+//            listAdapter.get().updateList(players.get())
+//        }
     }
 
     fun startGame() {
-        players.get().forEach {
-            when (it) {
-                PlayerType.AGGRESSIVE -> gameEngine.register(AggressivePlayer())
-                PlayerType.GREEDY -> gameEngine.register(BigMoneyPlayer())
-                else -> {
-                }
-            }
-        }
+//        players.get().forEach {
+//            when (it) {
+//                PlayerType.AGGRESSIVE -> gameEngine.register(AggressivePlayer())
+//                PlayerType.GREEDY -> gameEngine.register(BigMoneyPlayer())
+//                else -> {
+//                }
+//            }
+//        }
         navigator.startActivity(Intent(context, GameActivity::class.java))
     }
 }
