@@ -1,13 +1,13 @@
 package android.dominion.ui.adapter.base
 
-import android.databinding.ViewDataBinding
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by michaelkrakauer on 11/12/2017.
  */
 abstract class RecyclerAdapterBase<ItemType>(private var items: MutableList<ItemType>)
-    : RecyclerView.Adapter<RecyclerAdapterBase.ViewHolderBase>() {
+    : androidx.recyclerview.widget.RecyclerView.Adapter<RecyclerAdapterBase.ViewHolderBase>() {
 
     protected open val enableFooter = false
     protected open val enableHeader = false
@@ -38,5 +38,5 @@ abstract class RecyclerAdapterBase<ItemType>(private var items: MutableList<Item
     }
 
 
-    abstract class ViewHolderBase(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
+    abstract class ViewHolderBase(binding: ViewDataBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root)
 }

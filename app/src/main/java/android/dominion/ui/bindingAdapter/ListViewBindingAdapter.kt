@@ -1,6 +1,6 @@
 package android.dominion.ui.bindingAdapter
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.widget.BaseAdapter
 import android.widget.ListView
 

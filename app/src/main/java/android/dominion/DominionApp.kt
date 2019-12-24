@@ -1,7 +1,7 @@
 package android.dominion
 
 import android.app.Activity
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject

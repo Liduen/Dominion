@@ -1,8 +1,8 @@
 package android.dominion.ui.bindingAdapter
 
-import android.databinding.BindingAdapter
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by michaelkrakauer on 11/12/2017.
@@ -10,9 +10,9 @@ import android.support.v7.widget.RecyclerView
 object RecyclerViewBindingAdapter {
     @JvmStatic
     @BindingAdapter("recyclerAdapter")
-    fun setRecyclerAdapter(recyclerView: RecyclerView, viewAdapter: RecyclerView.Adapter<*>?) {
+    fun setRecyclerAdapter(recyclerView: androidx.recyclerview.widget.RecyclerView, viewAdapter: androidx.recyclerview.widget.RecyclerView.Adapter<*>?) {
         viewAdapter?.let {
-            recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+            recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(recyclerView.context)
             recyclerView.adapter = it
         }
     }

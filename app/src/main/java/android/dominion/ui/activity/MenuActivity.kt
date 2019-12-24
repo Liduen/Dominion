@@ -6,5 +6,5 @@ import android.dominion.ui.base.BaseActivity
 import android.dominion.ui.viewModel.MenuViewModel
 
 class MenuActivity : BaseActivity<MenuViewModel, MenuBinding>(R.layout.activity_menu) {
-    override val viewModel = MenuViewModel()
+    override val viewModel = MenuViewModel(application)
 }
