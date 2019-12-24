@@ -19,10 +19,3 @@ import java.util.*
 //        return items
 //    }
 //}
-
-fun <T> Iterable<T>.shuffle(): List<T> {
-    val list = toMutableList()
-    Collections.shuffle(list)
-
-    return list
-}

@@ -9,7 +9,7 @@
 
     <application
         android:name=".DominionApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -26,12 +26,7 @@
         </provider>
 
         <activity android:name=".ui.activity.MenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.searchable"
@@ -41,8 +36,19 @@
             android:name=".ui.activity.HostingActivity"
             android:label="@string/title_activity_hosting"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.activity.GameActivity"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".ui.activity.GameActivity"
+            android:screenOrientation="landscape">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
