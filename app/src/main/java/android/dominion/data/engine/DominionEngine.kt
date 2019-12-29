@@ -3,6 +3,8 @@ package android.dominion.data.engine
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import java.util.*
+import kotlinx.coroutines.*
+
 
 class DominionEngine private constructor() : Engine {
     private var state: EngineState = EngineState.REGISTERING_USERS
@@ -28,6 +30,19 @@ class DominionEngine private constructor() : Engine {
         state = EngineState.GAME_IN_PROGRESS
         users.values.forEach { it.onGameStarted() }
         eventLogSubject.postValue("Game started!")
+        GlobalScope.launch {
+            runGame()
+        }
+    }
+
+    private fun runGame() {
+        if (!isGameOver()) {
+
+        }
+    }
+
+    private fun isGameOver(): Boolean {
+        return false
     }
 
     enum class EngineState {
