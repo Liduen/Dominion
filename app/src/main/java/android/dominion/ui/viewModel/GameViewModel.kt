@@ -1,6 +1,7 @@
 package android.dominion.ui.viewModel
 
 import android.app.Application
+import android.dominion.data.board.BoardUserSubState
 import android.dominion.data.engine.DominionEngine
 import android.dominion.data.engine.Engine
 import android.dominion.data.engine.EngineEventListener
@@ -19,6 +20,7 @@ class GameViewModel(application: Application) : BaseViewModel(application) {
     }
     private lateinit var userId: String
     lateinit var engine: Engine
+    private lateinit var currentBoardState: BoardUserSubState
 
     override fun initialize() {
         DominionEngine.registerUser(gameClient)
@@ -37,8 +39,8 @@ class GameViewModel(application: Application) : BaseViewModel(application) {
         override fun onGameStarted() {
         }
 
-        override fun onTurn() {
-
+        override fun onTurn(userBoardSubState: BoardUserSubState) {
+            currentBoardState = userBoardSubState
         }
 
         override fun onEvent() {
