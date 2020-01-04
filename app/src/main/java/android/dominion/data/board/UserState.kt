@@ -1,6 +1,8 @@
 package android.dominion.data.board
 
 import android.dominion.data.card.BaseCard
+import android.dominion.data.card.base.Copper
+import android.dominion.data.card.base.Estate
 import java.util.*
 
 class UserState {
@@ -13,7 +15,13 @@ class UserState {
     val hand = listOf<BaseCard>()
     val discard = listOf<BaseCard>()
 
-    fun drawCard() {
-
+    init {
+        repeat(3) {
+            deck.push(Estate())
+        }
+        repeat(7) {
+            deck.push(Copper())
+        }
+        deck.shuffle()
     }
 }

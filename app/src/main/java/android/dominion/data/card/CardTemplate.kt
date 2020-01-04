@@ -4,6 +4,14 @@ enum class CardTemplate {
     COPPER,
     SILVER,
     GOLD,
+    CURSE,
+    ESTATE,
+    DUCHY,
+    PROVINCE,
+
     VILLAGE,
-    OASIS;
+
+    OASIS,
+
+    PLATINUM;
 }

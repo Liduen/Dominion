@@ -1,10 +1,16 @@
 package android.dominion.data.card
 
-import android.dominion.data.card.dominion.Village
-
-enum class Deck(kingdomCards: List<CardTemplate> = listOf(),
-                supplyCards: List<CardTemplate> = listOf()) {
-    DOMINION(kingdomCards = listOf()),
+enum class Deck(val kingdomCards: List<CardTemplate> = listOf(),
+                val supplyCards: List<CardTemplate> = listOf()) {
+    BASIC(supplyCards = listOf(
+            CardTemplate.COPPER,
+            CardTemplate.SILVER,
+            CardTemplate.GOLD,
+            CardTemplate.CURSE,
+            CardTemplate.ESTATE,
+            CardTemplate.DUCHY,
+            CardTemplate.PROVINCE)),
+    DOMINION(kingdomCards = listOf(CardTemplate.VILLAGE)),
     HINTERLANDS,
-    PROSPERITY
+    PROSPERITY(supplyCards = listOf(CardTemplate.PLATINUM))
 }

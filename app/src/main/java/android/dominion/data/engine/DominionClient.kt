@@ -2,6 +2,6 @@ package android.dominion.data.engine
 
 import android.dominion.data.board.BoardUserSubState
 
-interface Engine {
+interface DominionClient {
     fun onTurnCompleted(userSubState: BoardUserSubState)
 }

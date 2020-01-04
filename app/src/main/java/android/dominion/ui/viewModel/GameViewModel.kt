@@ -3,7 +3,7 @@ package android.dominion.ui.viewModel
 import android.app.Application
 import android.dominion.data.board.BoardUserSubState
 import android.dominion.data.engine.DominionEngine
-import android.dominion.data.engine.Engine
+import android.dominion.data.engine.DominionClient
 import android.dominion.data.engine.EngineEventListener
 import android.dominion.ui.base.BaseViewModel
 import androidx.lifecycle.MutableLiveData
@@ -19,7 +19,7 @@ class GameViewModel(application: Application) : BaseViewModel(application) {
         it.value = ""
     }
     private lateinit var userId: String
-    lateinit var engine: Engine
+    lateinit var engine: DominionClient
     private lateinit var currentBoardState: BoardUserSubState
 
     override fun initialize() {
@@ -31,12 +31,13 @@ class GameViewModel(application: Application) : BaseViewModel(application) {
     }
 
     inner class DominionUserClient : EngineEventListener {
-        override fun onSubscribed(engine: Engine, userId: String) {
+        override fun onSubscribed(engine: DominionClient, userId: String) {
             this@GameViewModel.engine = engine
             this@GameViewModel.userId = userId
         }
 
-        override fun onGameStarted() {
+        override fun onGameStarted(userBoardSubState: BoardUserSubState) {
+
         }
 
         override fun onTurn(userBoardSubState: BoardUserSubState) {

@@ -2,7 +2,8 @@ package android.dominion.data.engine
 
 import android.dominion.data.board.BoardUserSubState
 import android.dominion.data.board.CompleteBoardState
-import android.dominion.data.card.KingdomCard
+import android.dominion.data.card.CardTemplate
+import android.dominion.data.card.Deck
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.GlobalScope
@@ -10,7 +11,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 
-class DominionEngine private constructor() : Engine {
+class DominionEngine private constructor() : DominionClient {
     private var state: EngineState = EngineState.REGISTERING_USERS
     private val users = mutableMapOf<String, EngineEventListener>()
     private val usersQueue = ArrayDeque<String>()
@@ -33,10 +34,11 @@ class DominionEngine private constructor() : Engine {
         if (userId != hostUserId)
             throw IllegalArgumentException("user $userId")
         eventLogSubject.postValue("Initializing board...")
+        state = EngineState.INITIALIZING_BOARD
         initializeBoard()
         state = EngineState.GAME_IN_PROGRESS
         users.forEach {
-            it.value.onGameStarted()
+            it.value.onGameStarted(boardState.getUserSubset(it.key))
             usersQueue.add(it.key)
         }
         eventLogSubject.postValue("Game started!")
@@ -46,8 +48,24 @@ class DominionEngine private constructor() : Engine {
     }
 
     private fun initializeBoard() {
-        val cards = listOf<KingdomCard>()
-        boardState = CompleteBoardState(users.keys.toList(), cards)
+        val decks = listOf(Deck.DOMINION)
+        val gameCards = getGameCards(decks)
+        boardState = CompleteBoardState(users.keys.toList(), gameCards)
+    }
+
+    private fun getGameCards(decks: List<Deck>): List<CardTemplate> {
+        return if (decks.size == 1) {
+            val deck = decks.single()
+            deck.kingdomCards.shuffled().take(10)
+        } else {
+            val firstDeck = decks.first()
+            val secondDeck = decks[1]
+
+            mutableListOf<CardTemplate>().also {
+                it.addAll(firstDeck.kingdomCards.shuffled().take(5))
+                it.addAll(secondDeck.kingdomCards.shuffled().take(5))
+            }
+        }
     }
 
     private fun runGame() {

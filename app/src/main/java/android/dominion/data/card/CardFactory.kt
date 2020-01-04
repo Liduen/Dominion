@@ -13,4 +13,10 @@ object CardFactory {
             else -> throw IllegalArgumentException()
         }
     }
+
+    fun getCardPile(cardTemplate: CardTemplate, count: Int): List<BaseCard> {
+        return List(count) {
+            getCard(cardTemplate)
+        }
+    }
 }
