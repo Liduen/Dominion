@@ -1,8 +1,7 @@
 package android.dominion.data.card
 
-import android.dominion.data.card.base.Copper
-import android.dominion.data.card.base.Gold
-import android.dominion.data.card.base.Silver
+import android.dominion.data.card.base.*
+import android.dominion.data.card.dominion.Village
 
 object CardFactory {
     fun getCard(cardTemplate: CardTemplate): BaseCard {
@@ -10,7 +9,12 @@ object CardFactory {
             CardTemplate.COPPER -> Copper()
             CardTemplate.SILVER -> Silver()
             CardTemplate.GOLD -> Gold()
-            else -> throw IllegalArgumentException()
+            CardTemplate.ESTATE -> Estate()
+            CardTemplate.DUCHY -> Duchy()
+            CardTemplate.PROVINCE -> Province()
+            CardTemplate.CURSE -> Curse()
+            CardTemplate.VILLAGE -> Village()
+            else -> throw IllegalArgumentException("Card type - $cardTemplate failed to initialize.")
         }
     }
 

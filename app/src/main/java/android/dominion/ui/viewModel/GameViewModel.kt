@@ -1,11 +1,17 @@
 package android.dominion.ui.viewModel
 
 import android.app.Application
+import android.dominion.data.board.BoardState
 import android.dominion.data.board.BoardUserSubState
-import android.dominion.data.engine.DominionEngine
-import android.dominion.data.engine.DominionClient
-import android.dominion.data.engine.EngineEventListener
+import android.dominion.data.card.BaseCard
+import android.dominion.engine.DominionClientEventListener
+import android.dominion.engine.DominionEngine
+import android.dominion.engine.DominionService
+import android.dominion.engine.GameType
+import android.dominion.engine.client.DominionClient
+import android.dominion.player.BigMoneyPlayer
 import android.dominion.ui.base.BaseViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 /**
@@ -13,41 +19,55 @@ import androidx.lifecycle.MutableLiveData
  */
 
 class GameViewModel(application: Application) : BaseViewModel(application) {
-    private val gameClient = DominionUserClient()
 
-    val log = MutableLiveData<String>().also {
-        it.value = ""
-    }
-    private lateinit var userId: String
-    lateinit var engine: DominionClient
-    private lateinit var currentBoardState: BoardUserSubState
-
-    override fun initialize() {
-        DominionEngine.registerUser(gameClient)
-    }
-
-    fun startGame() {
-        DominionEngine.startGame(userId)
-    }
-
-    inner class DominionUserClient : EngineEventListener {
-        override fun onSubscribed(engine: DominionClient, userId: String) {
-            this@GameViewModel.engine = engine
-            this@GameViewModel.userId = userId
+    private val eventListener = object : DominionClientEventListener {
+        override fun onSubscribed(client: DominionClient, userId: String) {
+            gameClient = client
+            gameUserId = userId
         }
 
         override fun onGameStarted(userBoardSubState: BoardUserSubState) {
-
         }
 
         override fun onTurn(userBoardSubState: BoardUserSubState) {
-            currentBoardState = userBoardSubState
+            innerBoard.postValue(userBoardSubState)
+            innerHand.postValue(userBoardSubState.UserState.hand)
+            isGameRunning.postValue(true)
         }
 
         override fun onEvent() {
+
         }
 
         override fun onGameOver() {
+            isGameRunning.value = false
         }
+    }
+    val log = MutableLiveData<String>().also {
+        it.value = ""
+    }
+    private val innerHand = MutableLiveData<List<BaseCard>>()
+    val hand: LiveData<List<BaseCard>>
+        get() = innerHand
+    private val innerBoard = MutableLiveData<BoardState>()
+    val board: LiveData<BoardState>
+        get() = innerBoard
+    val isGameRunning = MutableLiveData<Boolean>().also {
+        it.value = false
+    }
+    private lateinit var gameUserId: String
+    lateinit var gameClient: DominionClient
+
+    override fun initialize() {
+        DominionEngine.onLogEvent.observeForever {
+            log.value += "\n-----------\n$it"
+        }
+        DominionService().launchGame(eventListener, GameType.LOCAL)
+        DominionService().addLocalUser(BigMoneyPlayer())
+        DominionService().addLocalUser(BigMoneyPlayer())
+    }
+
+    fun startGame() {
+        DominionEngine.startGame(gameUserId)
     }
 }

@@ -13,6 +13,7 @@ abstract class BaseActivity<out ViewModel, DataBinding>(private val layoutId: In
               DataBinding : androidx.databinding.ViewDataBinding {
 
     protected abstract val viewModel: ViewModel
+    protected lateinit var binding: DataBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,8 @@ abstract class BaseActivity<out ViewModel, DataBinding>(private val layoutId: In
     }
 
     private fun bindToLayout() {
-        val binding: DataBinding = DataBindingUtil.setContentView(this, layoutId)
+        binding = DataBindingUtil.setContentView(this, layoutId)
+        binding.lifecycleOwner = this
         binding.setVariable(BR.viewModel, viewModel)
     }
 }

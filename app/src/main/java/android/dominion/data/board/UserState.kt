@@ -6,22 +6,26 @@ import android.dominion.data.card.base.Estate
 import java.util.*
 
 class UserState {
-    // user
-    //  deck -> stack
-    //  hand -> list
-    //  discard -> list
-    //  in the future we can add the board components for duration cards and etc'
-    val deck = Stack<BaseCard>()
-    val hand = listOf<BaseCard>()
-    val discard = listOf<BaseCard>()
+    private val innerDeck = Stack<BaseCard>()
+    private val innerHand = mutableListOf<BaseCard>()
+    private val innerDiscard = mutableListOf<BaseCard>()
+
+    val deck: List<BaseCard>
+        get() = innerDeck
+
+    val hand: List<BaseCard>
+        get() = innerHand
+
+    val discard: List<BaseCard>
+        get() = innerDiscard
 
     init {
         repeat(3) {
-            deck.push(Estate())
+            innerDeck.push(Estate())
         }
         repeat(7) {
-            deck.push(Copper())
+            innerDeck.push(Copper())
         }
-        deck.shuffle()
+        innerDeck.shuffle()
     }
 }

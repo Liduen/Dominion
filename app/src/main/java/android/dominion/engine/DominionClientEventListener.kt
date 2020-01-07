@@ -1,9 +1,10 @@
-package android.dominion.data.engine
+package android.dominion.engine
 
 import android.dominion.data.board.BoardUserSubState
+import android.dominion.engine.client.DominionClient
 
-interface EngineEventListener {
-    fun onSubscribed(engine: DominionClient, userId: String)
+interface DominionClientEventListener {
+    fun onSubscribed(client: DominionClient, userId: String)
 
     fun onGameStarted(userBoardSubState: BoardUserSubState)
 

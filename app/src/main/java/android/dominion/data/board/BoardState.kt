@@ -16,10 +16,11 @@ interface MutableBoardState {
     val trash: MutableList<BaseCard>
 }
 
-class CompleteBoardState(players: List<String>,
-                         kingdomCardTypes: List<CardTemplate>)
+class CompleteBoardState(
+        players: List<String>,
+        kingdomCardTypes: List<CardTemplate>)
     : MutableBoardState {
-    val userStates = mutableMapOf<String, UserState>()
+    private val userStates = mutableMapOf<String, UserState>()
     override val supplyCards = mutableMapOf<CardTemplate, List<BaseCard>>()
     override val kingdomCards = mutableMapOf<CardTemplate, List<BaseCard>>()
     override val trash = mutableListOf<BaseCard>()
@@ -29,6 +30,9 @@ class CompleteBoardState(players: List<String>,
             kingdomCards[it] = CardFactory.getCardPile(it, 10)
         }
         initSupplyCards(players)
+        players.forEach {
+            userStates[it] = UserState()
+        }
     }
 
     private fun initSupplyCards(players: List<String>) {
