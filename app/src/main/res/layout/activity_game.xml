@@ -17,7 +17,7 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -25,63 +25,70 @@
             android:id="@+id/btn_start_game"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_centerInParent="true"
             android:onClick='@{() -> viewModel.startGame()}'
             android:text="START"
             android:visibility='@{BooleanConverter.hideIfTrue(viewModel.isGameRunning())}'
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tv_hand"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:background="#00FF00"
-            android:text="Hand"
-            app:layout_constraintEnd_toEndOf="@id/rv_hand"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_board"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:background="#00FF00"
-            android:text="Board"
-            app:layout_constraintEnd_toEndOf="@id/rv_board"
-            app:layout_constraintStart_toStartOf="@id/rv_board"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_hand"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility='@{BooleanConverter.showIfTrue(viewModel.isGameRunning())}'
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/rv_board"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_hand" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_board"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility='@{BooleanConverter.showIfTrue(viewModel.isGameRunning())}'
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_log"
-            app:layout_constraintStart_toEndOf="@id/rv_hand"
-            app:layout_constraintTop_toBottomOf="@id/tv_board" />
-
-        <TextView
-            android:id="@+id/tv_log"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text='@{viewModel.log}'
-            android:visibility='@{BooleanConverter.showIfTrue(viewModel.isGameRunning())}'
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/rv_board"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility='@{BooleanConverter.showIfTrue(viewModel.isGameRunning())}'>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.6666666" />
+
+            <TextView
+                android:id="@+id/tv_action_counter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@id/guideline1"
+                app:layout_constraintEnd_toStartOf="@id/tv_buy_counter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guideline1"
+                tools:text="Actions: 1" />
+
+            <TextView
+                android:id="@+id/tv_buy_counter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@id/guideline1"
+                app:layout_constraintEnd_toStartOf="@id/tv_treasure_counter"
+                app:layout_constraintStart_toEndOf="@id/tv_action_counter"
+                app:layout_constraintTop_toTopOf="@id/guideline1"
+                tools:text="Buys: 1" />
+
+            <TextView
+                android:id="@+id/tv_treasure_counter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@id/guideline1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_buy_counter"
+                app:layout_constraintTop_toTopOf="@id/guideline1"
+                tools:text="Treasure: 1" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_hand"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_buy_counter"
+                tools:itemCount="5"
+                tools:listitem="@layout/list_item_card" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
 
 </layout>

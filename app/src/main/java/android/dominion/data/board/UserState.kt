@@ -27,5 +27,30 @@ class UserState {
             innerDeck.push(Copper())
         }
         innerDeck.shuffle()
+
+        repeat(5) {
+            drawCard()
+        }
+    }
+
+    fun drawCard(): BaseCard? {
+        if (innerDeck.any()) {
+            val card = innerDeck.pop()
+            innerHand.add(card)
+
+            return card
+        } else if (innerDiscard.any()) {
+            innerDiscard.shuffled().forEach {
+                innerDeck.push(it)
+            }
+            innerDiscard.clear()
+
+            val card = innerDeck.pop()
+            innerHand.add(card)
+
+            return card
+        }
+
+        return null
     }
 }

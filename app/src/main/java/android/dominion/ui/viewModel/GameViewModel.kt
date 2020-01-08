@@ -46,7 +46,7 @@ class GameViewModel(application: Application) : BaseViewModel(application) {
     val log = MutableLiveData<String>().also {
         it.value = ""
     }
-    private val innerHand = MutableLiveData<List<BaseCard>>()
+    private val innerHand = MutableLiveData<List<BaseCard>>().also { it.value = listOf() }
     val hand: LiveData<List<BaseCard>>
         get() = innerHand
     private val innerBoard = MutableLiveData<BoardState>()
