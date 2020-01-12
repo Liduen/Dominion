@@ -1,7 +1,7 @@
 package android.dominion.data.card
 
 import android.dominion.data.card.base.*
-import android.dominion.data.card.dominion.Village
+import android.dominion.data.card.dominion.*
 import android.dominion.data.card.hinterlands.Oasis
 import android.dominion.data.card.prosperity.Platinum
 
@@ -15,9 +15,27 @@ object CardFactory {
             CardTemplate.DUCHY -> Duchy()
             CardTemplate.PROVINCE -> Province()
             CardTemplate.CURSE -> Curse()
+
+            CardTemplate.CELLAR -> Cellar()
+            CardTemplate.CHAPEL -> Chapel()
+            CardTemplate.MOAT -> Moat()
+            CardTemplate.HARBINGER -> Harbinger()
+            CardTemplate.MERCHANT -> Merchant()
+            CardTemplate.VASSAL -> Vassal()
             CardTemplate.VILLAGE -> Village()
-            CardTemplate.PLATINUM -> Platinum()
+            CardTemplate.WORKSHOP -> Workshop()
+            CardTemplate.BUREAUCRAT -> Bureaucrat()
+            CardTemplate.GARDENS -> Gardens()
+            CardTemplate.MILITIA -> Militia()
+            CardTemplate.MONEYLENDER -> Moneylender()
+            CardTemplate.POACHER -> Poacher()
+            CardTemplate.REMODEL -> Remodel()
+            CardTemplate.SMITHY -> Smithy()
+            CardTemplate.THRONE_ROOM -> ThroneRoom()
+
             CardTemplate.OASIS -> Oasis()
+
+            CardTemplate.PLATINUM -> Platinum()
             else -> throw IllegalArgumentException("Card type - $cardTemplate failed to initialize.")
         }
     }

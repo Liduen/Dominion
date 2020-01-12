@@ -19,6 +19,15 @@ enum class CardTemplate(val cost: Int, @DrawableRes val imageResId: Int) {
     MERCHANT(3, R.drawable.i_card_merchant),
     VASSAL(3, R.drawable.i_card_vassal),
     VILLAGE(3, R.drawable.i_card_village),
+    WORKSHOP(3, R.drawable.i_card_workshop),
+    BUREAUCRAT(4, R.drawable.i_card_bureaucrat),
+    GARDENS(4, R.drawable.i_card_gardens),
+    MILITIA(4, R.drawable.i_card_militia),
+    MONEYLENDER(4, R.drawable.i_card_moneylender),
+    POACHER(4, R.drawable.i_card_poacher),
+    REMODEL(4, R.drawable.i_card_remodel),
+    SMITHY(4, R.drawable.i_card_smithy),
+    THRONE_ROOM(4, R.drawable.i_card_throne_room),
 
     OASIS(3, R.drawable.i_card_oasis),
 
