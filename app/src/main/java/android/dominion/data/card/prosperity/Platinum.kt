@@ -6,4 +6,5 @@ import android.dominion.data.card.type.TreasureCard
 
 class Platinum : SupplyCard(), TreasureCard {
     override val template: CardTemplate = CardTemplate.PLATINUM
+    override val cost: Int = 9
 }

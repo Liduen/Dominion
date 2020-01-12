@@ -5,4 +5,5 @@ import android.dominion.data.card.SupplyCard
 
 class Copper : SupplyCard() {
     override val template: CardTemplate = CardTemplate.COPPER
+    override val cost: Int = 0
 }

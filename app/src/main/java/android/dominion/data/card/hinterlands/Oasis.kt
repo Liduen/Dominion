@@ -6,4 +6,5 @@ import android.dominion.data.card.type.ActionCard
 
 class Oasis : KingdomCard(), ActionCard {
     override val template: CardTemplate = CardTemplate.OASIS
+    override val cost: Int = 3
 }

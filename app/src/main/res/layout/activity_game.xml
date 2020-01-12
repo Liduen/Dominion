@@ -41,7 +41,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.6666666" />
+                app:layout_constraintGuide_percent="0.75" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_board_supply"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/rv_board_kingdom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_weight="1"
+                tools:listitem="@layout/list_item_hand_card" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_board_kingdom"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/tv_buy_counter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_board_supply"
+                app:layout_constraintVertical_weight="2"
+                app:spanCount="2"
+                tools:listitem="@layout/list_item_hand_card" />
 
             <TextView
                 android:id="@+id/tv_action_counter"
@@ -85,7 +112,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_buy_counter"
                 tools:itemCount="5"
-                tools:listitem="@layout/list_item_card" />
+                tools:listitem="@layout/list_item_hand_card" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

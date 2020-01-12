@@ -5,4 +5,5 @@ import android.dominion.data.card.SupplyCard
 
 class Estate : SupplyCard() {
     override val template: CardTemplate = CardTemplate.ESTATE
+    override val cost: Int = 2
 }
